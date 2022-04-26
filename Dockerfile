@@ -8,7 +8,7 @@ COPY scripts/configure.sh configure.sh
 RUN ./configure.sh
 
 FROM php:7.4-fpm-alpine
-WORKDIR /var/www
+WORKDIR /app
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=git --chown=www-data:www-data /clone-workspace .
@@ -18,4 +18,4 @@ COPY scripts/entrypoint.sh entrypoint.sh
 RUN docker-php-ext-install opcache pcntl pdo_mysql && \
     composer install
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]

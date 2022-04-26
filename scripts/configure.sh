@@ -7,4 +7,3 @@ sed -i \
   -e "s|dbPassword = 'watchtower'|dbPassword = '${MYSQL_PASSWORD:=watchtower}'|g" \
   -e "s|beanstalkServer = '127.0.0.1'|beanstalkServer = '${BEANSTALK_SERVER:=127.0.0.1}'|g" \
   lib/config.php
-mv public html
