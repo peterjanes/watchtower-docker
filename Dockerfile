@@ -14,6 +14,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=git --chown=www-data:www-data /clone-workspace .
 
 COPY files/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
+COPY files/cron /etc/periodic/15min/watchtower
 COPY scripts/entrypoint.sh entrypoint.sh
 RUN docker-php-ext-install opcache pcntl pdo_mysql && \
     composer install
